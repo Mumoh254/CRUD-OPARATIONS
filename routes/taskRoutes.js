@@ -1,21 +1,26 @@
 
 const express = require('express');
 const taskModel = require('../models/taskModel');
-const { createTask, getTasks , getTask , deleteTask  , updateTask} = require('../controllers/taskController');
+const { createTask, getTasks , getTask , deleteTask  , updateTask, apps} = require('../controllers/taskController');
 
 //router  variable
 
 const  router  =  express.Router();
 
 //creating   routes
+//part   of  optimization 
+//refactor   routes
 
-router.post("/api/v1/tasks/welttallis" , createTask)
+router.route("/").get(getTasks).post(createTask)
+router.route("/:id").delete(deleteTask).put( updateTask).get( getTask)
+// router.post("/" , createTask)
 
-router.get("/api/v1/tasks/welttallis" , getTasks)
+// router.get("/" , getTasks)
+router.get("/app"  , apps)
 
-router.get("/api/v1/tasks/welttallis/:id" , getTask)
+// router.get("/:id" ,)
 
-router.delete("/api/v1/tasks/welttallis/:id" , deleteTask)
-router.put("/api/v1/tasks/welttallis/:id" , updateTask)
+// router.delete("/:id" , )
+// router.put("/:id" ,)
 
 module.exports  =   router;

@@ -1,15 +1,22 @@
 const taskModel = require("../models/taskModel");
 const express = require('express');
 const   app  =  express();
-app.use(express.json())
+app.use(express.json());
 
 
+
+
+
+const  apps  =    (  req ,  res)  =>{
+ 
+    res.status(200).json({
+        message: "Caution Default  Home  Endpoint "
+    })
+    console.log(req.body)
+}
 //controller   we  save  all   our   call  back    functions
 
-
-
 const createTask =  async  (  req ,  res) =>{
-
 
     try {
 
@@ -18,15 +25,14 @@ const createTask =  async  (  req ,  res) =>{
         let   task  = await  taskModel.create( req.body)
         res.status(200).json(task)
         console.log(task)
+        console.log(req.body)
         
     } catch (error) {
         
         res.status(500).json(error)
         console.log("error  creating  task")
     }
-
 }
-
 
 const  getTasks  =   async  (  req ,  res) =>{
 
@@ -71,7 +77,6 @@ const  getTask  =  async  (  req ,  res) =>{
     
 }
 
-
 //delete   a  task
 
 const deleteTask = async (req, res) => {
@@ -100,7 +105,6 @@ const deleteTask = async (req, res) => {
         console.log(error);
     }
 };
-
 
 //update    a  task
 
@@ -133,12 +137,12 @@ const updateTask = async (req, res) => {
   };
   
 
-
 module.exports  =  {
     createTask,
     getTasks,
     getTask,
     deleteTask,
-    updateTask 
+    updateTask,
+    apps
 
 }

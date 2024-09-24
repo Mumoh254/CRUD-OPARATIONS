@@ -13,24 +13,14 @@ const Taskroutes = require('./routes/taskRoutes');
 const      app    =  express();
 
 //using  routes  middleware
-app.use(Taskroutes);
+app.use("/api/v1/tasks/welttallis",Taskroutes);
 
 
-
-//middle  wares
-app.use(express.json());
-
+app.use(express.json())
 
 //port
 const  PORT   =   process.env.PORT  ||   5000
 
-
-//routes
-app.get("/"  ,  ( req , res)=>{
-    res.status(200).send({
-        message: "Caution Default  Home  Endpoint "
-    })
-})
 
 //post   Request 
 
