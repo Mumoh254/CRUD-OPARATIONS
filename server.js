@@ -35,9 +35,6 @@ app.get("/"  ,  ( req , res)=>{
 //post   Request 
 
 
-
-
-
 //connect   to  the  database
 
 mongoose.connect(process.env.MONGO_URL)

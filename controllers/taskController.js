@@ -42,8 +42,6 @@ const  getTasks  =   async  (  req ,  res) =>{
             message:  error.message
         })
     }
-
-    
 }
 
 //a  single  data 
@@ -104,11 +102,43 @@ const deleteTask = async (req, res) => {
 };
 
 
+//update    a  task
+
+const updateTask = async (req, res) => {
+    try {
+      const { id } = req.params;
+      
+   
+      console.log(`  checking   for   task  to  update ${req.params}`);
+  
+      const updatedTask = await taskModel.findByIdAndUpdate(
+        id,
+        req.body,
+        { new: true, runValidators: true } 
+      );
+  
+      if (!updatedTask) {
+        return res.status(404).json({ message: 'Task not found' });
+      }
+  
+      // Log after updating task
+      console.log(`  task   fully   updated  ${updatedTask}`);
+  
+      res.status(200).json(updatedTask);
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  };
+  
+
 
 module.exports  =  {
     createTask,
     getTasks,
     getTask,
-    deleteTask
-    
+    deleteTask,
+    updateTask 
+
 }

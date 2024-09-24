@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 
 const  taskSchema  =   mongoose.Schema({
+  
     name:  {
 
         type:  String,
@@ -13,10 +14,7 @@ const  taskSchema  =   mongoose.Schema({
         maxLength:  20
     },
 
-    taskId:{
-        type: "String"
-    },
-
+  
     title:{
         type:  "String",
         required:[
@@ -41,18 +39,12 @@ const  taskSchema  =   mongoose.Schema({
         default: "medium"
     },
 
-    createdAt:{
-
-        type:Date,
-        default: Date.now
-    },
+ 
 
     attachments:[
     
  
-        {
-            
-            fileName: {
+        { fileName: {
                 type: "String"
             },
 
